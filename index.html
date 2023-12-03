@@ -110,6 +110,19 @@
             #backfjjj:hover {
                 background-color: #0056b3; /* 鼠标悬停时改变背景颜色 */
             }
+
+            button#dtdd {
+                background-color:#add8e6; /* 淡色背景 */
+                color: white; /* 文字颜色 */
+                border: 2px solid #ccc; /* 边框 */
+                padding: 27px; 
+                margin: 10px; /* 按钮外边距，可根据实际需要调整 */
+                width: 100%; /* 宽度与 "xbb" 按钮一致 */
+                height: 100px; /* 高度为 "xbb" 按钮高度的八分之一 */
+                font-size: 27px; /* 字体大小，可根据实际需要调整 */
+                /* 添加更多样式规则根据需要 */
+            }
+
             
     </style>
 </head>
@@ -1402,6 +1415,7 @@
             if (matchingMedicines.length > 0) {
                 matchingMedicines.forEach(medicine => {
                     const medicineDiv = document.createElement("div");
+                    medicineDiv.id = "tdd"
                     medicineDiv.innerHTML = `
                     <h2>${medicine.name}</h2>
                     <p>组成：<input type="text" placeholder="" id="input组成_${medicine.name}" class="diput"></p>
@@ -1409,6 +1423,7 @@
                     <p>主治：<input type="text" placeholder="" id="input主治_${medicine.name}" class="diput"></p>
                     <p>辩证要点：<input type="text" placeholder="" id="input辩证要点_${medicine.name}" class="diput"></p>
                     <button class="xbb" onclick="checkInput(event, '${medicine.name}', '${medicine.组成}', '${medicine.功用}', '${medicine.主治}', '${medicine.辩证要点}')">检查</button>
+                    <button onclick="deletdiv()" id="dtdd">记住了，点击删除</button>
                     <div id="feedback"></div>`;
                     resultDiv.appendChild(medicineDiv);
                 });
@@ -1417,6 +1432,12 @@
             }
             searchResults = resultDiv.innerHTML;
             
+        }
+
+        function deletdiv() {
+            let element = document.getElementById("tdd");
+            let parent = element.parentElement;
+            parent.removeChild(element);
         }
 
         function normalizeText(text) {
